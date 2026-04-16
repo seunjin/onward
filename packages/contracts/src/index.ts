@@ -1,6 +1,9 @@
 export const APP_NAME = 'Onward';
 export const SLOGAN = 'Progress over perfection';
 
+export const AUTH_PROVIDERS = ['google', 'apple'] as const;
+export type AuthProvider = (typeof AUTH_PROVIDERS)[number];
+
 export const GOAL_TYPES = ['todo', 'habit', 'challenge'] as const;
 export type GoalType = (typeof GOAL_TYPES)[number];
 
@@ -15,7 +18,7 @@ export type CadenceType = (typeof CADENCE_TYPES)[number];
 
 export interface AuthUser {
   id: string;
-  email: string;
+  email: string | null;
   nickname: string | null;
   timezone: string;
 }
@@ -40,6 +43,16 @@ export interface GoalSummary {
   startDate: string | null;
   endDate: string | null;
   targetCount: number | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface RecordSummary {
+  id: string;
+  goalId: string;
+  userId: string;
+  status: RecordStatus;
+  performedOn: string;
   createdAt: string;
   updatedAt: string;
 }

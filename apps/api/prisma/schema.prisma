@@ -25,16 +25,44 @@ enum CadenceType {
   custom
 }
 
+enum RecordStatus {
+  done
+  skipped
+  missed
+}
+
+enum AuthProvider {
+  google
+  apple
+}
+
 model User {
-  id            String         @id @default(cuid())
-  email         String         @unique
-  passwordHash  String
-  nickname      String?
-  timezone      String         @default("UTC")
-  goals         Goal[]
-  refreshTokens RefreshToken[]
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
+  id             String         @id @default(cuid())
+  email          String?        @unique
+  passwordHash   String?
+  nickname       String?
+  timezone       String         @default("UTC")
+  authIdentities AuthIdentity[]
+  goals          Goal[]
+  records        Record[]
+  refreshTokens  RefreshToken[]
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+}
+
+model AuthIdentity {
+  id              String       @id @default(cuid())
+  userId          String
+  user            User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  provider        AuthProvider
+  providerUserId  String
+  email           String?
+  emailVerified   Boolean      @default(false)
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+
+  @@unique([provider, providerUserId])
+  @@index([userId])
 }
 
 model RefreshToken {
@@ -53,6 +81,7 @@ model Goal {
   id           String      @id @default(cuid())
   userId       String
   user         User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  records      Record[]
   title        String
   description  String?
   type         GoalType
@@ -66,4 +95,19 @@ model Goal {
   updatedAt    DateTime    @updatedAt
 
   @@index([userId, status])
+}
+
+model Record {
+  id          String       @id @default(cuid())
+  goalId      String
+  goal        Goal         @relation(fields: [goalId], references: [id], onDelete: Cascade)
+  userId      String
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  status      RecordStatus
+  performedOn DateTime
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  @@unique([goalId, performedOn])
+  @@index([userId, performedOn])
 }

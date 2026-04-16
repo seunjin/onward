@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Get,
+  Inject,
   Param,
   Patch,
   Post,
@@ -20,7 +21,10 @@ import { GoalsService } from './goals.service';
 @UseGuards(JwtAuthGuard)
 @Controller('goals')
 export class GoalsController {
-  constructor(private readonly goalsService: GoalsService) {}
+  constructor(
+    @Inject(GoalsService)
+    private readonly goalsService: GoalsService,
+  ) {}
 
   @Post()
   create(
