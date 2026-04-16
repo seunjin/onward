@@ -1,0 +1,26 @@
+# AGENTS.md
+
+> 생성 파일입니다. 같은 디렉터리의 `AI_CONTEXT.md`를 수정한 뒤 `pnpm sync:ai-context`를 실행하세요.
+> 원본: `AI_CONTEXT.md`
+# Design Tokens 패키지
+
+## 범위
+
+- 공용 색상, spacing, radius, typography 토큰을 담당한다.
+
+## 주의사항
+
+- 토큰은 웹과 모바일 모두에서 재사용 가능한 의미 기반 이름으로 유지한다.
+- 컴포넌트 스타일 패턴 자체를 이 패키지로 옮기지 않는다.
+- 여러 앱이 의존하므로 토큰 이름은 안정적으로 유지한다.
+- 특정 화면 전용 수치를 공용 토큰처럼 추가하지 않는다.
+
+## 작업 규칙
+
+- 토큰은 의미 기반 이름으로 추가하고, 플랫폼 구현 세부사항은 앱에서 처리한다.
+- 색상과 spacing은 가능한 한 scale을 유지하며 확장한다.
+- 이름 변경보다 새 semantic token 추가를 우선 검토한다.
+
+## 변경 후 확인
+
+- 최소 `pnpm --filter @onward/design-tokens typecheck`를 실행한다.

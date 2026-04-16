@@ -1,0 +1,9 @@
+{
+  "expo": {
+    "name": "Onward",
+    "slug": "onward",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "assetBundlePatterns": ["**/*"]
+  }
+}

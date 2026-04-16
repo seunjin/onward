@@ -1,0 +1,40 @@
+{
+  "name": "@onward/api",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "db:push": "prisma db push",
+    "dev": "tsx watch src/main.ts",
+    "lint": "eslint .",
+    "prisma:generate": "prisma generate",
+    "start": "node dist/main.js",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@nestjs/common": "latest",
+    "@nestjs/config": "latest",
+    "@nestjs/core": "latest",
+    "@nestjs/jwt": "latest",
+    "@nestjs/mapped-types": "latest",
+    "@nestjs/passport": "latest",
+    "@nestjs/platform-express": "latest",
+    "@onward/domain": "workspace:*",
+    "@onward/contracts": "workspace:*",
+    "@prisma/client": "^6.16.0",
+    "bcryptjs": "latest",
+    "class-transformer": "latest",
+    "class-validator": "latest",
+    "passport": "latest",
+    "passport-jwt": "latest",
+    "reflect-metadata": "latest",
+    "rxjs": "latest"
+  },
+  "devDependencies": {
+    "@onward/eslint-config": "workspace:*",
+    "@onward/typescript-config": "workspace:*",
+    "@types/passport-jwt": "latest",
+    "prisma": "^6.16.0",
+    "tsx": "latest"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "name": "@onward/web",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json --noEmit && vite build",
+    "dev": "vite",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@onward/contracts": "workspace:*",
+    "@onward/design-tokens": "workspace:*",
+    "@onward/domain": "workspace:*",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-router-dom": "latest"
+  },
+  "devDependencies": {
+    "@onward/eslint-config": "workspace:*",
+    "@onward/typescript-config": "workspace:*",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@vitejs/plugin-react": "latest",
+    "vite": "latest"
+  }
+}

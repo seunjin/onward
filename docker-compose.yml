@@ -1,0 +1,20 @@
+services:
+  db:
+    image: postgres:16
+    container_name: onward-postgres
+    environment:
+      POSTGRES_DB: onward
+      POSTGRES_USER: onward
+      POSTGRES_PASSWORD: "0360"
+    ports:
+      - "6000:5432"
+    volumes:
+      - onward-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U onward -d onward"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  onward-postgres-data:

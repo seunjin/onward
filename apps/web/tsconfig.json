@@ -1,0 +1,7 @@
+{
+  "extends": "@onward/typescript-config/react-vite.json",
+  "compilerOptions": {
+    "baseUrl": "."
+  },
+  "include": ["src", "vite.config.ts"]
+}

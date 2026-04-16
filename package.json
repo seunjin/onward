@@ -1,0 +1,31 @@
+{
+  "name": "onward",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "pnpm@10.19.0",
+  "scripts": {
+    "build": "turbo run build",
+    "check:ai-context": "node ./scripts/sync-ai-context.mjs --check",
+    "db:down": "docker compose down",
+    "db:logs": "docker compose logs -f db",
+    "db:up": "docker compose up -d db",
+    "dev": "turbo run dev --parallel",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "turbo run lint",
+    "sync:ai-context": "node ./scripts/sync-ai-context.mjs",
+    "typecheck": "turbo run typecheck"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "@types/node": "latest",
+    "eslint": "^9.0.0",
+    "eslint-plugin-react-hooks": "latest",
+    "eslint-plugin-react-refresh": "latest",
+    "globals": "latest",
+    "prettier": "latest",
+    "turbo": "latest",
+    "typescript": "^5.9.0",
+    "typescript-eslint": "^8.0.0"
+  }
+}

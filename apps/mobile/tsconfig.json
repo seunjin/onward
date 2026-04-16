@@ -1,0 +1,4 @@
+{
+  "extends": "@onward/typescript-config/react-native.json",
+  "include": ["App.tsx"]
+}

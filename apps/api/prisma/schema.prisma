@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum GoalType {
+  todo
+  habit
+  challenge
+}
+
+enum GoalStatus {
+  active
+  archived
+  completed
+}
+
+enum CadenceType {
+  daily
+  weekly
+  custom
+}
+
+model User {
+  id            String         @id @default(cuid())
+  email         String         @unique
+  passwordHash  String
+  nickname      String?
+  timezone      String         @default("UTC")
+  goals         Goal[]
+  refreshTokens RefreshToken[]
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+}
+
+model RefreshToken {
+  id        String    @id @default(cuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tokenHash String    @unique
+  expiresAt DateTime
+  revokedAt DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([userId])
+}
+
+model Goal {
+  id           String      @id @default(cuid())
+  userId       String
+  user         User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title        String
+  description  String?
+  type         GoalType
+  status       GoalStatus  @default(active)
+  cadenceType  CadenceType @default(daily)
+  cadenceValue Json?
+  startDate    DateTime?
+  endDate      DateTime?
+  targetCount  Int?
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+
+  @@index([userId, status])
+}

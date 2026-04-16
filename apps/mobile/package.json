@@ -1,0 +1,29 @@
+{
+  "name": "@onward/mobile",
+  "version": "0.0.0",
+  "private": true,
+  "main": "expo/AppEntry",
+  "scripts": {
+    "android": "expo start --android",
+    "dev": "expo start --clear",
+    "ios": "expo start --ios",
+    "lint": "eslint .",
+    "start": "expo start",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "web": "expo start --web"
+  },
+  "dependencies": {
+    "@onward/contracts": "workspace:*",
+    "@onward/design-tokens": "workspace:*",
+    "@onward/domain": "workspace:*",
+    "expo": "latest",
+    "expo-status-bar": "latest",
+    "react": "latest",
+    "react-native": "latest"
+  },
+  "devDependencies": {
+    "@onward/eslint-config": "workspace:*",
+    "@onward/typescript-config": "workspace:*",
+    "@types/react": "latest"
+  }
+}

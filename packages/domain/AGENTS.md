@@ -1,0 +1,27 @@
+# AGENTS.md
+
+> 생성 파일입니다. 같은 디렉터리의 `AI_CONTEXT.md`를 수정한 뒤 `pnpm sync:ai-context`를 실행하세요.
+> 원본: `AI_CONTEXT.md`
+# Domain 패키지
+
+## 범위
+
+- Onward의 공용 비즈니스 로직을 담당한다.
+
+## 주의사항
+
+- 코드는 순수하고 프레임워크에 독립적으로 유지한다.
+- 반복 규칙 해석, streak 계산, 파생 통계 같은 재사용 계산 로직을 이곳에 둔다.
+- 데이터베이스나 UI 관심사와 결합하지 않는다.
+- React, React Native, Nest, Prisma 같은 런타임 의존성을 이 패키지에 넣지 않는다.
+
+## 작업 규칙
+
+- 입력과 출력이 분명한 순수 함수 중심으로 작성한다.
+- 여러 앱이나 API에서 재사용되는 계산 로직은 우선 이 패키지로 이동을 검토한다.
+- 함수 수가 늘어나면 기능별 파일로 나누고 index에서는 재수출만 담당하게 한다.
+
+## 변경 후 확인
+
+- 최소 `pnpm --filter @onward/domain typecheck`를 실행한다.
+- 계산 로직 구조가 커졌다면 `pnpm --filter @onward/domain build`도 확인한다.
