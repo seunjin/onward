@@ -14,3 +14,15 @@ pnpm db:up
 pnpm --filter @onward/api db:push
 pnpm dev
 ```
+
+## Environment Files
+
+- `apps/web/.env.development`: local web development values
+- `apps/web/.env.production`: production web values
+- `apps/web/.env.example`: web template
+- `apps/api/.env.development`: local API development values
+- `apps/api/.env.production`: production API values
+- `apps/api/.env.example`: API template
+- optional local overrides:
+  - `.env.development.local`
+  - `.env.production.local`
